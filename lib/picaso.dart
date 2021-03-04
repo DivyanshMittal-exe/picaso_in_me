@@ -1,13 +1,31 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-class Drawing{
+import 'package:picaso_in_me/DrawingBoard.dart';
+
+
+class Drawing extends StatelessWidget {
+
   String title="";
   Drawing(String title){
     this.title=title;
   }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
 
+      body: FlatButton(
+        color: Colors.green,
+        textColor: Colors.white,
+        child: Text('Flat Button',),
+        onPressed: () {
+
+        },
+      ),
+    );
+  }
 }
+
 
 int count = 2;
 
@@ -98,6 +116,14 @@ class _PicasoScreenState extends State<PicasoScreen> {
           itemBuilder: (context, index) {
             return ListTile(
               title: Text(listItems[index].title),
+                onTap: (){
+                print("Tapped");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>DrawBoard()),
+                );
+
+              }
             );
           },
 
