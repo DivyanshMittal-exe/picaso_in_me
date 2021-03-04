@@ -8,7 +8,7 @@ This project is a starting point for a Flutter application.
 
 Currently you can add new drawing by pressing a button and set custom name. By selecting any one of the items from the list, the canvas opens. Other parts of the assignment are still under constrction and l will hopeful soon be uploaded too.
 
-This is my firt go at Flutter.
+This is my first go at Flutter.
 
 A few resources to get you started if this is your first Flutter project:
 
