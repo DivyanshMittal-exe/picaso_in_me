@@ -69,6 +69,16 @@ class PaintBoard extends CustomPainter{
     ..color=Colors.deepPurple
     ..isAntiAlias=true
     ..strokeWidth=3.0;
+    for(var i=0; i< offsets.length; i++){
+      if(offsets[i]!=null && offsets[i+1]!=null){
+
+        canvas.drawLine(offsets[i], offsets[i+1], paint);
+
+      }else if(offsets[i]!=null && offsets[i+1]==null){
+        canvas.drawPoints( PointMode.points, [offsets[i]], paint);
+      }
+    }
+
     for(var offsets in offsets){
       canvas.drawPoints( PointMode.points, [offsets], paint);
     }
