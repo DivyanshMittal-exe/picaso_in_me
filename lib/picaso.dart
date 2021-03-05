@@ -11,6 +11,13 @@ class Drawing extends StatelessWidget {
   Drawing(String title){
     this.title=title;
   }
+
+  // ignore: non_constant_identifier_names
+  String GetTitle(){
+
+    return title;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +72,7 @@ class _PicasoScreenState extends State<PicasoScreen> {
 
 
 
+
   TextEditingController _textFieldController = TextEditingController();
 
   Future<void> _displayTextInputDialog(BuildContext context) async {
@@ -72,10 +80,10 @@ class _PicasoScreenState extends State<PicasoScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('TextField in Dialog'),
+          title: Text('Add New'),
           content: TextField(
             controller: _textFieldController,
-            decoration: InputDecoration(hintText: "Text Field in Dialog"),
+            decoration: InputDecoration(hintText: "Name"),
           ),
           actions: <Widget>[
             FlatButton(
@@ -98,20 +106,50 @@ class _PicasoScreenState extends State<PicasoScreen> {
   }
 
 
-
+  // ignore: non_constant_identifier_names
+  var CpyItems = List<String>();
 
 
 
 
 
   @override
+
+
+
+
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Picaso In Me"),
+
+
+
+
+
+
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body:
+      Container(
+      child: Column(
+      children: <Widget>[
+      Padding(
+      padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          onChanged: (value) {
+            //filterSearchResults(value);
+          },
+          decoration: InputDecoration(
+              labelText: "Search",
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)))),
+        ),
+      ),
+        Expanded(
         child: ListView.separated(
           itemCount: listItems.length,
           itemBuilder: (context, index) {
@@ -124,28 +162,74 @@ class _PicasoScreenState extends State<PicasoScreen> {
                 // what to do after an item has been swiped away.
                 onDismissed: (direction) {
                   // Remove the item from the data source.
+
+
                   setState(() {
                     listItems.removeAt(index);
                   });
+
+
 
                   // Then show a snackbar.
                  // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$item dismissed")));
                 },
                 // Show a red background as the item is swiped away.
-                background: Container(color: Colors.red),
-
+            background: Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 20.0),
+            color: Colors.redAccent,
+            child: Icon(Icons.delete, color: Colors.white),
+            ),
 
 
 
               child:  ListTile(
                        title: Text(listItems[index].title),
+
                        onTap: (){
                       print("Tapped");
                       Navigator.push(
                       context,
                         MaterialPageRoute(builder: (context) =>DrawBoard()),);
 
-            }
+            },
+
+                  onLongPress: (){
+                    print("Long Pressed");
+                    return showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Add New'),
+                          content: TextField(
+                            controller: _textFieldController,
+                            decoration: InputDecoration(hintText: "Name"),
+                          ),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text('CANCEL'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                            FlatButton(
+                              child: Text('OK'),
+                              onPressed: () {
+                                setState(() {
+                                  listItems[index].title=_textFieldController.text;
+                                });
+
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+
+
+
+                  },
               )
             );
 
@@ -160,10 +244,14 @@ class _PicasoScreenState extends State<PicasoScreen> {
           },
         ),
       ),
+      ]
+      ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
          onPressed: () { _displayTextInputDialog(context); },
       ),
+
     );
 
   }
