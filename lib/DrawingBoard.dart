@@ -3,6 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+
+
+int cooler=0;
+int sizes=0;
+
 class DrawBoard extends StatefulWidget {
   @override
   _DrawBoardState createState() => _DrawBoardState();
@@ -10,7 +15,8 @@ class DrawBoard extends StatefulWidget {
 
 class _DrawBoardState extends State<DrawBoard> {
 
-final _offsets =<Offset>[];
+//final _offsets =<Offset>[];
+List<Offset> _offsets =[];
 
 
   @override
@@ -52,8 +58,8 @@ final _offsets =<Offset>[];
           child: CustomPaint(
              painter: PaintBoard(_offsets),
             child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height:MediaQuery.of(context).size.height,
+            width:MediaQuery.of(context).size.width,
 
 
 
@@ -61,7 +67,63 @@ final _offsets =<Offset>[];
           ),
 
     ),
-    )
+    ),
+       /* floatingActionButtonLocation:
+        FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.navigate_before),
+              ),
+              FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.navigate_next),
+              )
+            ],
+          ),
+        )
+        */
+
+
+
+      floatingActionButton: Row(
+          children: [
+            RaisedButton(
+              child: Icon(Icons.brush),
+                color: Colors.cyan,
+
+                onPressed: (){cooler=0;}),
+
+            RaisedButton(
+                child: Icon(Icons.brush),
+                color: Colors.red,
+
+                onPressed: (){cooler=1;}),
+            RaisedButton(
+                child: Text("Stroke:3.0"),
+                color: Colors.cyan,
+
+                onPressed: (){sizes=0;}),
+            RaisedButton(
+                child: Text("Stroke:7.0"),
+                color: Colors.cyan,
+
+                onPressed: (){sizes=1;}),
+          ]
+      ),
+
+
+
+
+
+
+
+
+
     );
   }
 }
@@ -74,10 +136,28 @@ class PaintBoard extends CustomPainter{
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-    ..color=Colors.deepPurple
-    ..isAntiAlias=true
-    ..strokeWidth=3.0;
+    final paint = Paint();
+    if (cooler==0 && sizes==0){
+       paint
+        ..color = Colors.cyan
+        ..isAntiAlias = true
+        ..strokeWidth = 3.0;
+  }else if (cooler==1 && sizes==0){
+       paint
+        ..color = Colors.red
+        ..isAntiAlias = true
+        ..strokeWidth = 7.0;
+    }else if (cooler==0 && sizes==1){
+      paint
+        ..color = Colors.cyan
+        ..isAntiAlias = true
+        ..strokeWidth = 7.0;
+    }else if (cooler==1 && sizes==1){
+      paint
+        ..color = Colors.red
+        ..isAntiAlias = true
+        ..strokeWidth = 3.0;
+    }
     for(var i=0; i< offsets.length; i++){
       if(offsets[i]!=null && offsets[i+1]!=null){
 
