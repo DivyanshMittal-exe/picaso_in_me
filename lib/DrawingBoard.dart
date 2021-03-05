@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 
 
 int cooler=0;
-int sizes=0;
+int sizes=1;
 
 class DrawBoard extends StatefulWidget {
   @override
@@ -92,9 +92,10 @@ List<Offset> _offsets =[];
 
       floatingActionButton: Row(
           children: [
+
             RaisedButton(
               child: Icon(Icons.brush),
-                color: Colors.cyan,
+                color: Colors.green,
 
                 onPressed: (){cooler=0;}),
 
@@ -104,17 +105,31 @@ List<Offset> _offsets =[];
 
                 onPressed: (){cooler=1;}),
             RaisedButton(
-                child: Text("Stroke:3.0"),
+                child: Text("7.0"),
+                color: Colors.cyan,
+
+                onPressed: (){
+                  sizes=1;
+
+                }),
+            RaisedButton(
+                child: Text("3.0"),
                 color: Colors.cyan,
 
                 onPressed: (){sizes=0;}),
             RaisedButton(
-                child: Text("Stroke:7.0"),
+                child: Icon(Icons.ad_units_outlined),
                 color: Colors.cyan,
 
-                onPressed: (){sizes=1;}),
+                onPressed: (){
+
+                    _offsets.clear();
+
+
+                }),
           ]
       ),
+
 
 
 
@@ -139,7 +154,7 @@ class PaintBoard extends CustomPainter{
     final paint = Paint();
     if (cooler==0 && sizes==0){
        paint
-        ..color = Colors.cyan
+        ..color = Colors.green
         ..isAntiAlias = true
         ..strokeWidth = 3.0;
   }else if (cooler==1 && sizes==0){
@@ -149,7 +164,7 @@ class PaintBoard extends CustomPainter{
         ..strokeWidth = 7.0;
     }else if (cooler==0 && sizes==1){
       paint
-        ..color = Colors.cyan
+        ..color = Colors.green
         ..isAntiAlias = true
         ..strokeWidth = 7.0;
     }else if (cooler==1 && sizes==1){
