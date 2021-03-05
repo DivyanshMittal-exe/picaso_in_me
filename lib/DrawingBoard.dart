@@ -39,6 +39,15 @@ final _offsets =<Offset>[];
             });
 
           },
+
+          onPanEnd: (details){
+
+            setState(() {
+              _offsets.add(null);
+            });
+
+          },
+
         child: Center(
           child: CustomPaint(
              painter: PaintBoard(_offsets),

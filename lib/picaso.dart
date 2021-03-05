@@ -200,10 +200,10 @@ class _PicasoScreenState extends State<PicasoScreen> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text('Add New'),
+                          title: Text('Edit name'),
                           content: TextField(
                             controller: _textFieldController,
-                            decoration: InputDecoration(hintText: "Name"),
+                            decoration: InputDecoration(hintText: "Enter the new name"),
                           ),
                           actions: <Widget>[
                             FlatButton(
