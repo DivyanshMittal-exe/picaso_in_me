@@ -34,6 +34,14 @@ class Drawing extends StatelessWidget {
   }
 }
 
+String SearchString ="";
+
+
+
+
+
+
+
 
 int count = 2;
 
@@ -117,6 +125,62 @@ class _PicasoScreenState extends State<PicasoScreen> {
 
 
 
+  void filterSearchResults(String query) {
+    print("Searching");
+
+    List<String> duplicateItems ;
+
+    List<String> items ;
+
+    for(int i=0;i<listItems.length;i++){
+      duplicateItems.add(listItems[i].title);
+      items.add(listItems[i].title);
+    }
+
+
+
+
+    List<String> dummySearchList = List<String>();
+    dummySearchList.addAll(duplicateItems);
+    if(query.isNotEmpty) {
+      List<String> dummyListData = List<String>();
+      dummySearchList.forEach((item) {
+        if(item.contains(query)) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        items.clear();
+        items.addAll(dummyListData);
+        ListView.separated(
+            shrinkWrap: true,
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final item = items[index];
+              return ListTile(
+                title: Text(items[index]),
+
+
+                onTap: () {
+                  print("Tapped22");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DrawBoard()),);
+                },
+              );
+            }
+        );
+      });
+
+    } else {
+      setState(() {
+        items.clear();
+        items.addAll(duplicateItems);
+      });
+    }
+
+  }
+
 
 
 
@@ -138,8 +202,10 @@ class _PicasoScreenState extends State<PicasoScreen> {
       Padding(
       padding: const EdgeInsets.all(8.0),
         child: TextField(
+
+
           onChanged: (value) {
-            //filterSearchResults(value);
+            filterSearchResults(value);
           },
           decoration: InputDecoration(
               labelText: "Search",
@@ -151,6 +217,7 @@ class _PicasoScreenState extends State<PicasoScreen> {
       ),
         Expanded(
         child: ListView.separated(
+          shrinkWrap: true,
           itemCount: listItems.length,
           itemBuilder: (context, index) {
             final item = listItems[index].title;
@@ -185,6 +252,8 @@ class _PicasoScreenState extends State<PicasoScreen> {
 
               child:  ListTile(
                        title: Text(listItems[index].title),
+
+
 
                        onTap: (){
                       print("Tapped");

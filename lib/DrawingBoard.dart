@@ -1,8 +1,9 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:screenshot/screenshot.dart';
 
 
 int cooler=0;
@@ -17,9 +18,13 @@ class _DrawBoardState extends State<DrawBoard> {
 
 //final _offsets =<Offset>[];
 List<Offset> _offsets =[];
+int _counter = 0;
+File _imageFile;
 
+//Create an instance of ScreenshotController
+ScreenshotController screenshotController = ScreenshotController();
 
-  @override
+@override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -90,10 +95,15 @@ List<Offset> _offsets =[];
 
 
 
-      floatingActionButton: Row(
+      floatingActionButton: Column(
+
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
 
+
             RaisedButton(
+
               child: Icon(Icons.brush),
                 color: Colors.green,
 
@@ -119,7 +129,7 @@ List<Offset> _offsets =[];
                 onPressed: (){sizes=0;}),
             RaisedButton(
                 child: Icon(Icons.ad_units_outlined),
-                color: Colors.cyan,
+                color: Colors.white,
 
                 onPressed: (){
 
@@ -127,7 +137,9 @@ List<Offset> _offsets =[];
 
 
                 }),
-          ]
+
+          ],
+
       ),
 
 

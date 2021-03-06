@@ -22,6 +22,7 @@ environment:
 
 dependencies:
 
+  screenshot: ^0.2.0
   flutter:
     sdk: flutter
 
