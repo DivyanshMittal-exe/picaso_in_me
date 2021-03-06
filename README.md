@@ -1,6 +1,6 @@
 # picaso_in_me
 
-Currently you can add new drawing by pressing a button ,set custom name, and swipe to dismiss, long press to edit name .The option to search is only partially implemented. By selecting any one of the items from the list, the canvas opens where , you can clean the board, choose a colors and stroke size to draw with. Other parts of the assignment are still under constrction and l will hopeful soon be uploaded too.
+Currently you can add new drawing by pressing a button ,set custom name, and swipe to dismiss, long press to edit name .The option to search is only partially implemented. By selecting any one of the items from the list, the canvas opens where , you can clean the board, choose a colors and stroke size to draw with. Other parts of the assignment are still under constrction...
 
 This is my first go at Flutter.
 
