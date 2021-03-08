@@ -7,7 +7,7 @@ import 'package:screenshot/screenshot.dart';
 
 
 int cooler=0;
-int sizes=1;
+int sizes=0;
 
 class DrawBoard extends StatefulWidget {
   @override
@@ -20,6 +20,11 @@ class _DrawBoardState extends State<DrawBoard> {
 List<Offset> _offsets =[];
 int _counter = 0;
 File _imageFile;
+List<Offset> _undo =[];
+
+
+
+
 
 //Create an instance of ScreenshotController
 ScreenshotController screenshotController = ScreenshotController();
@@ -37,6 +42,7 @@ ScreenshotController screenshotController = ScreenshotController();
 
           setState(() {
             _offsets.add(details.localPosition);
+            _undo.clear();
           });
 
     },
@@ -47,6 +53,7 @@ ScreenshotController screenshotController = ScreenshotController();
 
             setState(() {
               _offsets.add(details.localPosition);
+              _undo.add(details.localPosition);
             });
 
           },
@@ -115,18 +122,18 @@ ScreenshotController screenshotController = ScreenshotController();
 
                 onPressed: (){cooler=1;}),
             RaisedButton(
-                child: Text("7.0"),
-                color: Colors.cyan,
-
-                onPressed: (){
-                  sizes=1;
-
-                }),
-            RaisedButton(
                 child: Text("3.0"),
                 color: Colors.cyan,
 
-                onPressed: (){sizes=0;}),
+                onPressed: (){
+                  sizes=0;
+
+                }),
+            RaisedButton(
+                child: Text("7.0"),
+                color: Colors.cyan,
+
+                onPressed: (){sizes=1;}),
             RaisedButton(
                 child: Icon(Icons.ad_units_outlined),
                 color: Colors.white,
@@ -134,6 +141,20 @@ ScreenshotController screenshotController = ScreenshotController();
                 onPressed: (){
 
                     _offsets.clear();
+
+
+                }),
+            RaisedButton(
+                child: Icon(Icons.undo),
+                color: Colors.cyan,
+
+                onPressed: (){
+
+  for(var i=0; i< _undo.length; i++){
+        var index=_offsets.length-i-1;
+    _offsets.removeAt(index);
+    _offsets[index]=null;
+  }
 
 
                 }),
@@ -173,7 +194,7 @@ class PaintBoard extends CustomPainter{
        paint
         ..color = Colors.red
         ..isAntiAlias = true
-        ..strokeWidth = 7.0;
+        ..strokeWidth = 3.0;
     }else if (cooler==0 && sizes==1){
       paint
         ..color = Colors.green
@@ -183,7 +204,7 @@ class PaintBoard extends CustomPainter{
       paint
         ..color = Colors.red
         ..isAntiAlias = true
-        ..strokeWidth = 3.0;
+        ..strokeWidth = 7.0;
     }
     for(var i=0; i< offsets.length; i++){
       if(offsets[i]!=null && offsets[i+1]!=null){
