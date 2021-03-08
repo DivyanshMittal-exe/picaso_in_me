@@ -17,7 +17,7 @@ Main Homepage, adding a new entry and deleting an entry
 
 Drawing Board, Renaming the drawing, App after renaming :
 
-<img src="https://user-images.githubusercontent.com/78041366/110201247-12250480-7e88-11eb-82f5-05d934fcd665.png"  width="300"><img src="https://user-images.githubusercontent.com/78041366/110119850-55c53300-7de2-11eb-8bd0-3a67ed328f01.png"  width="300"><img src="https://user-images.githubusercontent.com/78041366/110119873-5cec4100-7de2-11eb-9625-9e413228913b.png"  width="300">
+<img src="https://user-images.githubusercontent.com/78041366/110326696-03348280-803f-11eb-899e-ca9c17da9aea.png"  width="300"><img src="https://user-images.githubusercontent.com/78041366/110119850-55c53300-7de2-11eb-8bd0-3a67ed328f01.png"  width="300"><img src="https://user-images.githubusercontent.com/78041366/110119873-5cec4100-7de2-11eb-9625-9e413228913b.png"  width="300">
 
 
 
